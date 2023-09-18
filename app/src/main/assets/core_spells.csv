@@ -1,0 +1,169 @@
+spellName,"type","tier",categories,"reach","time","duration","effect"
+Skull Cracker,Physical,I,"Mono, Stunned, Status, Physical (A)",1 target within 5 meters,Default,Instant,Hit: STRd6 Physical damage and Stunned chance: 20%. Add 5% for each Hit Point rolled over target's Dodge.
+Assault Dive,Physical,I,"Mono, Physical (A)",1 target within 2 meters,Default,Instant,Hit: STRd8 Physical damage
+Holy Arrow,Physical,I,"Mono, Charmed, Status, Gun, Physical (A)",1 target within 5 meters,Default,Instant,Hit: STRd6 Gun damage and Charmed chance: 10%+2TEC%
+Double Claw,Physical,I,"Combo, Physical (A)",Up to 2 targets within 4 meters,Default,Instant,"Hit: STRd6+5 Physical damage. If you choose to hit 2 targets, deal half the rolled damage to each."
+Force Wave,Physical,I,"Knockdown, Status, Multi, Physical (A)",Up to 3 targets within 4 meters,Default,Instant,Hit: STRd6 Physical damage and Knockdown (Weakness) chance: 100%
+Cleave,Physical,I,"Line, Physical (A)",All targets between you and a point within 3 meters,Default,Instant,Hit: STRd4+8 Physical damage. Move to the chosen point at the end of your action.
+Gale Slash,Physical,I,"Total, Physical (A)",Any number of targets within 2 meters,Default,Instant,Hit: STRd4 Physical damage
+Arrow Rain,Physical,I,"Total, Gun, Physical (A)",Any number of targets the caster can see,Default,Instant,Spend 1 Energy to cast. Hit: STRd4+6 Gun damage.
+Fatal End,Physical,II,"Mono, Physical (A)",1 target within 2 meters,Default,Instant,Hit: STRd10+2 Physical damage
+Mind Slice,Physical,II,"Mono, Panic, Status, Physical (A)",1 adjacent target,Default,Instant,"Hit: STRd8+7 Physical damage, Panicked chance: 10+2TEC%."
+Cruel Impulse,Physical,II,"Mono, Physical (A)",1 target within 6 meters,Default,Instant,Hit: STRd8+7 Physical damage
+Poisonous Stab,Physical,II,"Mono, Poison, Status, Physical (A)",1 target within 6 meters,Default,Instant,"Hit: STRd6+8 Physical Damage, Poisoned chance: 15%. Add 5% for each Hit point rolled over the target's Dodge."
+Aeon Rain,Physical,II,"Multi, Gun, Physical (A)",Up to 3 targets within 4 meters,Default,Instant,Hit: STRd6+8 Gun damage
+Path of Blades,Physical,II,"Multi, Physical (A)",Any number of targets you can became adjacent to during your mowement.,Default,Instant,"Hit: STRd8+2 Physical damage. As part of the casting process, perform your full movement action."
+Chains of Madness,Physical,II,"Multi, Enraged, Status, Physical (A)",Any number of targets within 6 meters,Default,Instant,"Hit: STRd4+6 Physical damage, Enraged chance: 10%"
+Seal Bomb,Physical,II,"Multi, Panicked, Status, Physical (A)",1 target within 5 meters and units adjacent to that target,Default,Instant,Hit: STRd8 Physical damage and Panicked chance: 15+2TEC%.
+Herculean Strike,Physical,II,"Total, Physical (A)",Any number of targets the caster can see,Default,Instant,Spend 1 Energy to cast. Hit: STRd6+4 Physical damage.
+Tempest Slash,Physical,III,"Mono, Combo, Physical (A)",1 target within 3 meters,Default,Instant,Hit: STRd8+5 Physical damage and roll a second attack that deals STRd4+5 Physical damage.
+Gigantic Fist,Physical,III,"Mono, Knockdown, Physical (A)",1 target within 2 meters,Default,Instant,Hit: STRd10+5 Physical Damage and Knockdown chance: 100%.
+Vile Assault,Physical,III,"Mono, Physical (A)",1 target within 4 meters,Default,Instant,Hit: STRd12 Physical damage. Extra: STR+8 extra Physical damage if the enemy is Knocked Down
+Navas Nebula,Physical,III,"Multi, Taru, Debuff, Physical (A)",1 target within 5 meters and units adjacent to that target,Default,Instant,"Hit: STRd12+10 Physical damage. Extra: You can spend 2 Energy to apply the effects of Tarundamon to the target. ❖ Tarundamon: -2 STR, -2 MAG, 3 turns"
+Death Chain,Physical,III,"Multi, Physical (A)",1 target within 3 meters and units adjacent to that target,Default,Instant,Hit: STRd10+5 Physical damage
+Desperate Punch,Physical,III,"Mono, Repress, Physical (A)",1 target within 3 meters,Default,Instant,Hit: STRd12+10 Physical damage. Spend 1 Energy: Extra: Deals +2STR extra damage for each spell you currently have Repressed.
+Vorpal Blade,Physical,III,"Total, Physical (A)",Any number of targets,Default,Instant,Hit: STRd6+4 Physical damage.
+Akasha Arts,Physical,III,"Combo, Physical (A)",1 target within 4 meters,Default,Instant,Hit: STRd12+8 Physical damage. Extra: Spend 1 Energy to hit up to 1d3 additional targets.
+Agneyastra,Physical,III,"Multi, Knockdown, Realized, Status, Physical (A)",Any number of targets within 8 meters.,Default,Instant,"Hit: STRd6 Physical damage; Spend one use of each one of your other spells. In case you don't have any uses, spend the appropriate Energy cost. Deals X*10 extra Physical damage, where X is the sum of the Tiers of all spent spells. Knockdown (Weakness) chance: 100%. Realized: Wrecks objects adjacent to each hit target."
+Heavenly Blade,Physical,V,"Mono, Physical (A)",1 target within 3 meters,Default,Instant,Hit: STRd12+2STR Physical damage. Critical: STRd6+2 extra Physical damage.
+God's Hand,Physical,V,"Mono, Physical (A)",1 adjacent target,Default,Instant,Hit: STRd12+3STR Physical damage. HDC +1
+Primal Force,Physical,V,"Line, Knockdown, Physical (A)",All targets between you and a space within 8 meters,Default,Instant,Hit: STRd8+2 Physical damage and Knocked Down chance: 100%
+Pralaya,Physical,V,"Total, Fear, Physical (A)",Any number of targets within 5 meters.,Default,Instant,Hit: STRd8+4 Physical damage and Fearful chance: 15+2TEC%.
+Brave Blade,Physical,V,"Mono, Physical (A)",1 adjacent target,Default,Instant,Hit: STRd12+4STR+5 Physical damage. HDC +1. Spend 1 Aspect Point to cast.
+Agi,Fire,I,"Mono, Fire (A)",1 target within 8 meters,Default,Instant,Hit: MAGd6 Fire damage
+Ha Agi,Fire,I,"Multi, Fire (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd4+6 Fire damage
+Maragi,Fire,I,"Total, Fire (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd4 Fire damage
+Agilao,Fire,II,"Mono, Fire (A)",1 target within 8 meters,Default,Instant,Hit: MAGd8 Fire damage
+Ha Agilao,Fire,II,"Multi, Fire (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd6+6 Fire damage
+Maragion,Fire,II,"Total, Fire (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd4+6 Fire damage
+Flame Dance,Fire,II,"Combo, Fire (A)",Up to 1d6 targets within 7 meters,Default,Instant,Hit: MAGd6+6 Fire damage
+Eyes of Fire,Fire,II,"Unique, Repress, Fire (P)",Caster,Automatic,Passive,"You can cast Fire spells, up to Tior II, without spending uses or Energy, but Repress any spells cast with this effect."
+Fire Boost,Fire,II,"Unique, Boost, Fire (P)",Caster,Automatic,Passive,Fire spells you cast deal 25% more damage. This does not stack with other Boost Category spells.
+Ignition,Fire,II,"Mono, Realized, Fire (A)",1 adjacent target,Default,Until dissipated,"Hit: MAG Fire damage at the end of each turn. Realized: Target creature or object catches on fire. This fire spreads to adjacent objects and targets during target's turn, including during movement. Target creature can spend its full turn to put the flames out."
+Agidyne,Fire,III,"Mono, Fire (A)",1 target within 8 meters,Default,Instant,Hit: MAGd10+2 Fire damage
+Ha Agidyne,Fire,III,"Multi, Fire (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd8+7 Fire damage
+Maragidyne,Fire,III,"Total, Fire (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd6+4 Fire damage
+Inferno,Fire,III,"Mono, Critical, Fire (A)",1 target within 8 meters,Default,Instant,Hit: MAGd8+8 Fire damage. Critical: (MAG/2)d10+10 extra Fire damage.
+Purifying Flames,Fire,III,"Total, Death, Fire (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd6 Fire damage. Enemies hit by this spell whose HP is dropped below 20% die instantly.
+Fire Amp,Fire,III,"Unique, Boost, Fire (P)",Caster,Automatic,Passive,Fire spells you cast deal 50% more damage. This does not stack with other Boost Category spells.
+Pyriphlegton,Fire,V,"Mono, Fire (A)",1 target within 10 meters,Default,Instant,Hit: MAGd12+MAG Fire damage
+Rage of Cerberus,Fire,V,"Multi, Fire (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd12+2 Fire damage. Spend 1 Energy to cast.
+Ragnarök,Fire,V,"Total, Repress, Fire (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd10+7 Fire damage. Pay 1 Aspect Point: You can sacrifice uses of other Fire spells to add +3MAG Fire damage for each spell and Repress this spell.
+Titanomachia,Fire,V,"Total, Fear, Unique, Status, Fire (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd12+MAG+5 Fire damage and Fearful chance: 35+5TEC%. Pay 1 Aspect Point to cast.
+Bufu,Ice,I,"Mono, Ice (A)",1 target within 8 meters,Default,Instant,Hit: MAGd8 Ice damage
+Ha Bufu,Ice,I,"Multi, Ice (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd4 Ice damage
+Mabufu,Ice,I,"Total, Ice (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd-5 Ice damage
+Bufula,Ice,II,"Mono, Ice (A)",1 target within 8 meters,Default,Instant,Hit: MAGd10+2 Ice damage
+Ha Bufula,Ice,II,"Multi, Ice (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd4+8 Ice damage
+Mabufula,Ice,II,"Total, Ice (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd4 Ice damage
+Ice Waltz,Ice,II,"Combo, Ice (A)",Dance: Up to 1d6 targets within 7 meters,Default,Instant,MAGd4+8 Ice damage
+Heatsink,Ice,II,"Mono, Realized, Slowed, Status, Ice (A)",1 adjacent target,Default,Instant,"Hit: Slowed chance: 50%+5MAG%. Realized: Heat is drained from the target, freezing it internally. It's enough to cause mechanical failure or make most materials particularly brittle."
+Ice Boost,Ice,II,"Unique, Boost, Ice (P)",Caster,Automatic,Passive,Ice spells you cast deal 25% more damage. This does not stack with other Boost Category spells.
+Glacial Gaze,Ice,II,"Unique, Repress, Ice (P)",Caster,Automatic,Passive,"You can cast Ice spells, up to Tier II, without spending its uses or Energy. Repress any spells cast this way."
+Bufudyne,Ice,III,"Mono, Ice (A)",1 target within 8 meters,Default,Instant,Hit: MAGd12+8 Ice damage
+Ha Bufudyne,Ice,III,"Multi, Ice (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd6+6 Ice damage
+Mabufudyne,Ice,III,"Total, Ice (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd4+6 Ice damage
+Absolute Zero,Ice,III,"Multi, Move, Ice (A)",Up to 4 targets within 7 meters,Default,Instant,"Hit: MAGd6 Ice damage. Extra: You can decrease the number of targets to deal MAG extra Ice damage to each enemy. If you choose to hit 1 enemy, its movement allowance is decreased to half for three turns."
+Diamond Dust,Ice,III,"Mono, Realized, Unique, Ice (A)",1 target you can see,Default,Instant,"Hit: MAGd12+1 Ice damage. Realized: The space occupied by the enemy slowly freezes. If the enemy does not leave that space until the end of its next turn, it'll be immobilized in a pillar of ice that restricts movement and reduces all damage reduction by half."
+Ice Amp,Ice,III,"Unique, Boost, Ice (P)",Caster,Automatic,Passive,Ice spells you cast deal 50% more damage. This does not stack with other Boost Category spells.
+Niflheim,Ice,V,"Mono, Ice (A)",1 target within 10 meters,Default,Instant,Hit: MAGd12+3MAG+5 Ice damage
+Ymir's Breath,Ice,V,"Multi, Stun, Status, Ice (A)",Up to 3 targets within 5 meters,Default,Instant,Hit: MAGd8+8 Ice damage; Stunned chance: 100%; Causes Weakness (Physical) until the end of the target's turn.
+Garu,Wind,I,"Mono, Wind (A)",1 target within 8 meters,Default,Instant,Hit: MAGd6 Wind damage; HDC +1
+Ha Garu,Wind,I,"Multi, Wind (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd4 Wind damage; HDC +1
+Magaru,Wind,I,"Total, Wind (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd4-5 Wind damage; HDC +1
+Garula,Wind,II,"Mono, Wind (A)",1 target within 8 meters,Default,Instant,Hit: MAGd8 Wind damage; HDC +1
+Ha Garula,Wind,II,"Multi, Wind (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd4+8 Wind damage; HDC +1
+Magarula,Wind,II,"Total, Wind (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd4 Wind damage; HDC +1
+Wind Ballet,Wind,II,"Combo, Wind (A)",Dance: Up to 1d6 targets within 7 meters,Default,Instant,Hit: MAGd4+8 Wind damage; HDC +1
+Vacuum Wave,Wind,II,"Line, Wind (A)",Any number of targets between you and a point within MAG meters,Default,Instant,Hit: MAGd4+8 Wind damage; HDC +1. Extra: Spend X energy to increase the HDC by X.
+Whirlwind,Wind,II,"Realized, Wind (A)",1 target within 6 meters and units adjacent to that target,Default,Instant,Hit: Objects and targets are dragged up to MAG+1d4 meters in a direction determined by the caster.
+Wind Boost,Wind,II,"Unique, Boost, Wind (P)",Caster,Automatic,Passive,Wind spells you cast deal 25% more damage. This does not stack with other Boost Category spells.
+Wind's Gift,Wind,II,"Unique, Repress, Wind (P)",Caster,Automatic,Passive,"You can cast Wind spells, up to Tier II, without spending uses or Energy. Repress any spells cast this way."
+Garudyne,Wind,III,"Mono, Wind (A)",1 target within 8 meters,Default,Instant,Hit: MAGd10+2 Wind damage; Choose before casting: ❖ HDC +2 ❖ Critical Margin +2
+Ha Garudyne,Wind,III,"Multi, Wind (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd6+6 Wind damage; Choose before casting: ❖ HDC +2 ❖ Critical Margin +2
+Magarudyne,Wind,III,"Total, Wind (A)",Any number of targets the caster can see,Default,Instant,Hit: MAGd4+6 Wind damage; Choose before casting: ❖ HDC +2 ❖ Critical Margin +2
+Tempest,Wind,III,"Mono, Knockdown, Status, Wind (A)",1 target within 8 meters,Default,Instant,Hit: MAGd4+5 Wind damage and Knockdown chance: 100%. Pay 1 Aspect Point: Cast as an Interrupt.
+Wind Amp,Wind,III,"Unique, Boost, Wind (P)",Caster,Automatic,Passive,Wind spells you cast deal 50% more damage. This does not stack with other Boost Category spells.
+Phanta Rei,Wind,V,"Mono, Wind (A)",1 target within 10 meters,Default,Instant,Hit: MAGd12+8 Wind damage; Critical Margin +3
+Vortex,Wind,V,"Wind (A)",A point within 10 meters,Default,Instant,"Spend 1 Energy. All enemies within an 8 meter radius are dragged up to 5 meters towards the specified point (doesn't roll for Dodge). After, all enemies within a 3-meter radius starting from the same point take MAGd10+4 Wind damage on hit; HDC +3"
+Zio,Thunder,I,"Mono, Shocked, Status, Thunder (A)",1 target within 8 meters,Default,Instant,Hit:MAGd6 Thunder damage; Shocked chance: 3MAG%
+Ha Zio,Thunder,I,"Multi, Shocked, Status, Thunder (A)",Up to 3 target within 7 meters,Default,Instant,Hit:MAGd4 Thunder damage; Shocked chance: 2MAG%
+Mazio,Thunder,I,"Total, Shocked, Status, Thunder (A)",Any number of targets the caster can see,Default,Instant,Hit:MAGd4-5 Thunder damage; Shocked chance: MAG%
+Sparking Touch,Thunder,I,"Mono, Realized, Thunder (A)",1 adjacent target,Default,Instant,Hit: MAGd4+5 Thunder damage. Realized: The caster's touch delivers a burst of electricity strong enough to destroy exposed electronics or create an arc of lightning in metal surfaces.
+Zionga,Thunder,II,"Mono, Shocked, Status, Thunder (A)",1 target within 8 meters,Default,Instant,Hit:MAGd8 Thunder damage; Shocked chance: 6MAG%
+Ha Zionga,Thunder,II,"Multi, Shocked, Status, Thunder (A)",Up to 3 target within 7 meters,Default,Instant,Hit:MAGd4+8 Thunder damage; Shocked chance: 5MAG%
+Mazionga,Thunder,II,"Total, Shocked, Status, Thunder (A)",Any number of targets the caster can see,Default,Instant,Hit:MAGd4 Thunder damage; Shocked chance: 4MAG%
+Thunder Tango,Thunder,II,"Combo, Shocked, Status, Thunder (A)",Dance: Up to 1d6 target within 9 meters,Default,Instant,Hit:MAGd4+8 Thunder damage; Shocked chance: 3MAG%
+Thunder Boost,Thunder,II,"Unique, Boost, Thunder (P)",Caster,Automatic,Passive,Thunder spells you cast deal 25% more damage. This does not stack with other Boost Category spells.
+Lightning Rod,Thunder,II,"Unique, Repress, Thunder (P)",Caster,Automatic,Passive,"You can cast Thunder spells, up to Tier II, without spending uses or Energy. Repress any spell cast this way."
+Ziodyne,Thunder,III,"Mono, Shocked, Status, Thunder (A)",1 target within 8 meters,Default,Instant,Hit:MAGd10+2 Thunder damage; Shocked chance: 8MAG%
+Ha Ziodyne,Thunder,III,"Multi, Shocked, Status, Thunder (A)",Up to 3 target within 7 meters,Default,Instant,Hit:MAGd6+6 Thunder damage; Shocked chance: 7MAG%
+Maziodyne,Thunder,III,"Total, Shocked, Status, Thunder (A)",Any number of targets the caster can see,Default,Instant,Hit:MAGd4+6 Thunder damage; Shocked chance: 6MAG%
+Discharge,Thunder,III,"Shocked, Status (A)",Any number of targets within 5 meters of a point within 8 meters,Default,Instant,Shocked chance: 10MAG%
+Thunder Amp,Thunder,III,"Unique, Boost, Thunder (P)",Caster,Automatic,Passive,Thunder spells you cast deal 50% more damage. This does not stack with other Boost Category spells.
+Electric Chains,Thunder,III,"Mono, Combo, Repress, Thunder (A)",1 target within 8 meters,Default,Instant,"Hit: MAGd4+5 Thunder damage. Spend any number of uses from your deck: For each spent spell, roll another attack of this spell. Spend 1 Aspect Point or Repress this spell."
+Thunder Reign,Thunder,V,"Mono, Shocked, Status, Thunder (A)",1 target within 10 meters,Default,Instant,Hit:MAGd12 Thunder damage; Shocked chance: 100%
+Strikes Twice,Thunder,V,"Repress, Thunder (A)",Caster,Default,Instant,"Spend 3 Energy: Until the end of your turn, you can cast Thunder spells in your deck as Free actions. Repress any spells cast under the effect of Strikes Twice. Damage dealt by these spells is added and considered a single instance of damage for the purpose of Hetelic Resistances. Spend 1 Aspect Point or Repress this spell."
+Frei,Nuclear,I,"Mono, Nuclear, Buildup (A)",One target within 8 meters,Default,Instant,Hit: MAGd6+2 Nuclear damage. Gain 1 Buildup counter
+Hafrei,Nuclear,I,"Multi, Nuclear, Buildup (A)",Up to 3 targets within 8 meters,Default,Instant,Hit: MAGd4+4 Nuclear damage. Gain 1 Buildup counter
+Mafrei,Nuclear,I,"Total, Nuclear, Buildup (A)",Any number of targets within 8 meters,Default,Instant,Hit: MAGd4-5 Nuclear damage. Gain 1 Buildup counter
+Anomalous Alpha,Nuclear,I,"Nuclear, Quick, Buildup (A)",X spaces you can see,Quick,Until the end of your next turn,"Spend X Buildup counters. For each counter spent this way, select one space you can see. If any unit starts its turn, moves through, or ends its turn in any of these spaces, you may choose to deal MAG Nuclear damage against that unit, for no action cost, once per unit, and you gain 1 Buildup counter."
+Ionizing Blight,Nuclear,I,"Mono, Nuclear, Buildup, Status, Poison (A)",1 target within 6 meters,Default,Instant, Spend 1 Buildup counter to cast. Poisoned chance: 30+5TEC%. You may spend X Buildup counters to increase this chance by 10*X%.
+Freila,Nuclear,II,"Mono, Nuclear, Buildup (A)",One target within 8 meters,Default,Instant,Hit: MAGd8 Nuclear damage. Gain 1 Buildup counter
+Hafreila,Nuclear,II,"Multi, Nuclear, Buildup (A)",Up to 3 targets within 8 meters,Default,Instant,Hit: MAGd4+MAG Nuclear damage. Gain 1 Buildup counter
+Mafreila,Nuclear,II,"Total, Nuclear, Buildup (A)",Any number of targets within 8 meters,Default,Instant,Hit: MAGd4 Nuclear damage. Gain 1 Buildup counter
+Nuclear Boost,Nuclear,II,"Unique, Boost, Nuclear (P)",Caster,Automatic,Passive,Nuclear spells you cast deal 25% more damage. This does not stack with other Boost Category spells.
+Beta Bubble,Nuclear,II,"Nuclear, Buff, Quick, Buildup (A)",One ally within 6 meters,Quick,Until the end of your next turn,"Target gains the following effect: Whenever you hit a spell that deals damage to a target, that spell deals +SKL Nuclear damage. Additionally, grant 1 Buildup counter to the caster of this effect."
+Metamorphosis,Nuclear,II,"Nuclear, Buildup, Quick, Buff, Debuff (A)",Caster,Quick,3 rounds,"Spend 1 Buildup counter, then choose: ❖ +3 STR, -2 TEC ❖ +2 MAG, -1 TEC ❖ +2 TEC, -1 STR, -1 MAG ❖ +1 Upper Range for all attacks; Attacks that target 'all adjacent units' also target 'all units within 2 meters of the original target'. These are considered Buff effects."
+Freidyne,Nuclear,III,"Mono, Nuclear, Buildup (A)",One target within 8 meters,Default,Instant,Hit: MAGd10+2 Nuclear damage. Gain 1 Buildup counter
+Hafreidyne,Nuclear,III,"Multi, Nuclear, Buildup (A)",Up to 3 targets within 8 meters,Default,Instant,Hit: MAGd8 Nuclear damage. Gain 1 Buildup counter
+Mafreidyne,Nuclear,III,"Total, Nuclear, Buildup (A)",Any number of targets within 8 meters,Default,Instant,Hit: MAGd4+9 Nuclear damage. Gain 1 Buildup counter
+Nuclear Amp,Nuclear,III,"Unique, Boost, Nuclear (P)",Caster,Automatic,Passive,Nuclear spells you cast deal 50% more damage. Does not stack with other Boost Category spells.
+Gamma Growth,Nuclear,III,"Nuclear, Buildup, Slowed, Stunned, Shocked, Status (O)",1 target you can see,Default,Instant,"Spend 2 Buildup counters, then choose: ❖ Slowed chance: 50+5TEC% ❖ Stunned chance: 30+5TEC% ❖ Shocked chance: 8TEC%"
+Orbital Strike,Nuclear,V,"Mono, Nuclear, Buildup, Realized (A)",1 target within 10 meters,Default,Instant,"Hit: MAGd12+MAG Nuclear damage. Gain 1 Buildup counter. You can choose to Realize: The energy from this attack can burn a hole through most materials, creating a hole up to 1 meter deep and wide on its point of impact."
+End of Days,Nuclear,V,"Unique, Multi, Nuclear, Buildup, Repress (A)",Up to 3 targets within 8 meters,Default,Instant,"Hit: MAGd10 Nuclear damage. Gain 1 Buildup counter. You can Repress to add the following effect: Restore 2 Energy for each target killed by this spell."
+Mutually Assured Destruction,Nuclear,V,"Nuclear, Quick, Buildup (A)",Caster,Quick,Until the end of your next turn,"Whenever you take damage from any source, you may spend 1 Energy or 2 Buildup counters: Cast Frei against 1 target for no action cost; These casts cannot roll for Critical hits."
+Neutronic Devolution,Nuclear,V,"Nuclear, Buildup, Buff, Debuff (A)",1 target caster can see,Default,3 rounds,"Spend 2 Buildup counters, then choose: ❖ -3 STR, -3 TEC ❖ -3 MAG, -3 AGI ❖ -2 STR, -2 MAG, -2 TEC. These are considered Debuff effects."
+Psi,Psychokinesis (PSY),I,"Mono, PSY, Ingrain (A)",1 target within 8 meters,Default,Instant,Hit: MAGd6+3 PSY damage and Ingrain.
+Hapsi,Psychokinesis (PSY),I,"Multi, PSY, Ingrain (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd4+2 PSY damage and Ingrain.
+Mapsi,Psychokinesis (PSY),I,"Total, PSY, Ingrain (A)",Any number of targets within 7 meters,Default,Instant,Hit: MAGd4-3 PSY damage and Ingrain.
+Psio,Psychokinesis (PSY),II,"Mono, PSY, Ingrain (A)",1 target within 8 meters,Default,Instant,Hit: MAGd8+3 PSY damage and Ingrain.
+Hapsio,Psychokinesis (PSY),II,"Multi, PSY, Ingrain (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd4+11 PSY damage and Ingrain.
+Mapsio,Psychokinesis (PSY),II,"Total, PSY, Ingrain (A)",Any number of targets within 7 meters,Default,Instant,Hit: MAGd4+4 PSY damage and Ingrain.
+Shirk,Psychokinesis (PSY),II,"Mono, PSY, Status, Heal, Quick (A)",1 target within 8 meters,Default,Instant,"Choose one Status you're afflicted with. You are cured of that Status, and that Status is applied to the target (no check). Spend 1 Energy: This is considered a Quick action and can be cast even if you are Panicked."
+PSY Boost,Psychokinesis (PSY),II,"Unique, Boost, PSY (P)",Caster,Automatic,Passive,PSY spells you cast deal 25% more damage. This does not stack with other Boost Category spells.
+Psiodyne,Psychokinesis (PSY),III,"Mono, PSY, Ingrain (A)",1 target within 8 meters,Default,Instant,Hit: MAGd10+5 PSY damage and Ingrain.
+Hapsiodyne,Psychokinesis (PSY),III,"Multi, PSY, Ingrain (A)",Up to 3 targets within 7 meters,Default,Instant,Hit: MAGd8 PSY damage and Ingrain.
+Mapsiodyne,Psychokinesis (PSY),III,"Total, PSY, Ingrain (A)",Any number of targets within 7 meters,Default,Instant,Hit: MAGd6 PSY damage and Ingrain.
+Imprint,Psychokinesis (PSY),III,"PSY, Status, Ingrain (A)",1 target within 8 meters,Default,Instant,"Choose 1 Status the target is suffering from. Then, choose another unit within 8 meters. The second unit is inflicted with that Status effect (no check), then Ingrain that Status effect on both targets, if possible."
+PSY Amp,Psychokinesis (PSY),III,"Unique, Boost, PSY (P)",Caster,Automatic,Passive,PSY spells you cast deal 50% more damage. This does not stack with other Boost Category spells.
+Psycho Force,Psychokinesis (PSY),V,"Mono, PSY, Ingrain (A)",1 target within 8 meters,Default,Instant,Hit: MAGd12+10 PSY damage and Ingrain.
+Psycho Blast,Psychokinesis (PSY),V,"Total, PSY, Ingrain (A)",Any number of targets within 7 meters,Default,Instant,Hit: MAGd10+MAG PSY damage and Ingrain.
+Mass Hysteria,Psychokinesis (PSY),V,"Total, PSY, Quick, Ingrain (A)",Any number of targets within 5 meters,Quick,Until the end of your next turn,"This spell does not check for dodge checks. Until the end of your next turn, targets hit by this spell cannot perform the LCK roll to avoid Status effects and cannot recover from Status."
+Hama,Light,I,"Mono, Light (A)",1 target,Default,Instant,"Deals 20+3TEC% of the target's current HP as damage, Max 40%."
+Ha Hama,Light,I,"Multi, Light (A)",1 target and all adjacent targets,Default,Instant,"Deals 10+2TEC% of the target's current HP as damage, Max 30%."
+Mahama,Light,I,"Total, Light (A)",Any number of targets,Default,Instant,"Deals 10+TEC% of the target's current HP as damage, Max 30%."
+Radiant Firmament,Light,I,"Unique, Free, Zenith (A)",One space within TEC/2 (minimum) meters,Free,Permanent,"This spell costs zero SP to acquire and its Energy cost is always zero. This spell cannot be Repressed. Place a Zenith of Radiance in one unoccupied space within this spell's range, or move your current Zenith up to TEC meters in any direction."
+Kouha,Light,I,"Mono, Light, Bless (A)",One target within 6 meters,Default,Instant,"Hit: MAGd6 Light damage. Bless: Any number of targets within range of your Zenith gain Fortify All MAG/2 (Minimum 1). This is considered a Buff effect that stacks with other Buff effects."
+Hakouha,Light,I,"Multi, Light, Bless (A)",Up to 3 targets within 6 meters,Default,Instant,"Hit: MAGd4 Light damage. Bless: Enemies cannot enter your Zenith's range. If targets are already within range, they are moved to the closest possible point outside of your Zenith's range, no check."
+Makouha,Light,I,"Total, Light, Bless (A)",Any number of targets within 6 meters,Default,Instant,"Hit: MAGd4-5 Light damage. Bless: Extend the duration of Tier I Taru, Raku, and Suku Buff effects active on targets within your Zenith's range by 1 round."
+Kouga,Light,II,"Mono, Light, Bless (A)",One target within 6 meters,Default,Instant,"Hit: MAGd8 Light damage. Bless: Any number of targets within range of your Zenith gain Evade 1 against one Type of their choice. This is considered a Buff effect that stacks with other Buff effects."
+Hakouga,Light,II,"Multi, Light, Bless (A)",Up to 3 targets within 6 meters,Default,Instant,"Hit: MAGd4+5 Light damage. Bless: Enemies cannot enter your Zenith's range. If targets are already within range, they are moved to the closest possible point outside of your Zenith's range and take MAG Light damage, no check."
+Makouga,Light,II,"Total, Light, Bless (A)",Any number of targets within 6 meters,Default,Instant,"Hit: MAGd4 Light damage. Bless: Extend the duration of Tier II Taru, Raku, and Suku Buff effects active on targets within your Zenith's range by 1 round."
+Immaculate,Light,II,"Zenith, Quick (A)",Caster,Quick,Instant,"Spend 1 Energy. Bless: Whenever an ally within your Zenith's range declares an attack, that attack deals +MAG Light damage on hit. Each User can only benefit from the effects of this spell once per round, regardless of how many Zeniths they come within range of that round."
+Hamaon,Light,III,"Mono, Light (A)",1 target,Default,Instant,"Deals 40+3TEC% of the target's current HP as damage, Max 70%."
+Ha Hamaon,Light,III,"Multi, Light (A)",1 target and all adjacent targets,Default,Instant,"Deals 20+2TEC% of the target's current HP as damage, Max 50%."
+Mahamaon,Light,III,"Total, Light (A)",Any number of targets,Default,Instant,"Deals 10+TEC% of the target's current HP as damage, Max 50%."
+Shining Arrows,Light,III,"Combo, Light (A)",Dance: Up to 1d6 targets within 5 meters,Default,Instant,"Deals 15% of the target's current HP as damage."
+Kougaon,Light,III,"Mono, Light, Bless (A)",One target within 6 meters,Default,Instant,"Hit: MAGd10 Light damage. Bless: Any number of targets within range of your Zenith take half damage from the next damage instance they take."
+Hakougaon,Light,III,"Multi, Light, Bless (A)",Up to 3 targets within 6 meters,Default,Instant,"Hit: MAGd6+5 Light damage. Bless: If an enemy declares an attack against a target that is within your Zenith's range, that enemy takes MAG Light damage, once per round."
+Makougaon,Light,III,"Total, Light, Bless (A)",Any number of targets within 6 meters,Default,Instant,"Hit: MAGd4+6 Light damage. Bless: Extend the duration of Tier III Taru, Raku, and Suku Buff effects active on targets within your Zenith's range by 1 round."
+Blessing of the Golden,Light,III,"Zenith, Defense (H)",Zenith,Default,Held,"Bless: Grant your Zenith a shield with HP equal to (MAG + PLv.) * 2. Whenever an ally within range of your Zenith would take damage, they may instead choose to subtract the damage from the Zenith's shield. Each character can only benefit from this effect once per round, regardless of how many Zeniths they are within range of. At the start of your turn, if this effect is active, you may spend 2 Energy to extend this effect and restore MAG points of the Zenith's Shield as a Quick Action."
+Banishment,Light,V,"Mono, Repress, Light (A)",1 target,Default,Instant,"Reduce the target to 1 HP. If this spell isn't Nulled or Reflected, Repress. Drain Light fully heals the target's HP. Against targets with Hetelic Resistances: this spell deals 10% of the target's maximum HP as Light damage and treats Null Light as Resist."
+Innocent Sin,Light,V,"Light (A)",1 target,Default,Instant,"Deals 50+3TEC% of the target's current HP as damage."
+Equalize,Light,V,"Total, Repress, Light (A)",Any number of targets,Default,Instant,"Adds the total HP of all targets and distributes it equally among all, as long as the amount of HP does not exceed the maximum amount of HP of any target. If that happens, all target's HP are set to the highest possible HP, the lowest maximum HP on the targets. Repress."
+Samsara,Light,V,"Total, Light (A)",Any number of targets,Default,Instant,"Pay 1 Aspect Point: Deals 20+2TEC% of the target's current HP as damage."
+Eternal Jewel,Light,V,"Mono, Light, Bless, Repress (A)",1 target within 6 meters,Default,Instant,"Hit: MAGd12+MAG Light damage. Repress to Bless: Any number of targets within the Zenith's range have all their Type Weakness interactions become Neutral."
+Final Moment,Light,V,"Multi, Light, Bless, Death, Repress (A)",Up to 3 targets within 6 meters,Default,Instant,"Hit: MAGd8+4 Light damage. Bless: Any number of targets within the Zenith's range take 2MAG Light damage. After this, Repress to Bless: Any number of targets whose HP is below 20% and are within the Zenith's range or enter it for the duration of this effect are killed."
+The Third Secret,Light,V,"Total, Light, Bless, Repress (A)",Any number of targets within 6 meters,Default,Instant,"Hit: MAGd8 Light damage. Bless: Extend the duration of Tier V Taru, Raku, and Suku Buff effects active on targets within your Zenith's range by 1 round. Repress to Bless: Any number of targets within your Zenith's range recover 2 Energy."
+Enlightenment,Miscellaneous,V,Repress (A),Caster,Default,Instant,"Restores up to six spell uses, including Repressed spells, Tier III or below."
