@@ -9,7 +9,9 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,6 +29,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -37,6 +40,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
@@ -54,7 +58,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             var csvArray = applicationContext.assets
-                .open("core_spells.csv")
+                .open("csv/core_spells.csv")
                 .bufferedReader()
                 .useLines { it.toList() }
             csvArray = List(csvArray.size-1) {index ->
@@ -99,6 +103,55 @@ class MainActivity : ComponentActivity() {
                         var physEnabled by remember {
                             mutableStateOf(true)
                         }
+                        var fireEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var iceEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var windEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var thunderEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var nukeEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var psyEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var lightEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var darkEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var almightyEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var healEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var buffEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var debuffEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var statusEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var intelEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var defenseEnabled by remember {
+                            mutableStateOf(true)
+                        }
+                        var miscEnabled by remember {
+                            mutableStateOf(true)
+                        }
+
                         var openDialog by remember {
                             mutableStateOf(false)
                         }
@@ -111,26 +164,166 @@ class MainActivity : ComponentActivity() {
                         if (openDialog) {
                             AlertDialog(
                                 onDismissRequest = { openDialog = false },
-                                /*title = {
-                                    Text(text = "Disable Physical Spells")
+                                title = {
+                                    Text(text = "Toggle Spell Types")
                                 },
                                 text = {
-                                    Text(text = "Are you sure about that?")
-                                },*/
-                                confirmButton = {
-                                    TextButton(onClick = {
-                                        physEnabled = true
-                                        openDialog = false
-                                    }) {
-                                        Text(text = "Enable Phys")
+                                    Column {
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                                            IconToggleButton(
+                                                checked = physEnabled,
+                                                onCheckedChange = { physEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(
+                                                        id = if (physEnabled) R.drawable.phys_enabled else R.drawable.phys_disabled
+                                                    ),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton (
+                                                checked = fireEnabled,
+                                                onCheckedChange = { fireEnabled = it }) {
+                                                Image (
+                                                    painter = painterResource (
+                                                        id = if (fireEnabled) R.drawable.fire_enabled else R.drawable.fire_disabled
+                                                    ),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = iceEnabled,
+                                                onCheckedChange = { iceEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (iceEnabled) R.drawable.ice_enabled else R.drawable.ice_disabled),
+                                                    contentDescription = null
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = windEnabled,
+                                                onCheckedChange = { windEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (windEnabled) R.drawable.wind_enabled else R.drawable.wind_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = thunderEnabled,
+                                                onCheckedChange = { thunderEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (thunderEnabled) R.drawable.thunder_enabled else R.drawable.thunder_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                        }
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                                            IconToggleButton(
+                                                checked = nukeEnabled,
+                                                onCheckedChange = { nukeEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (nukeEnabled) R.drawable.nuke_enabled else R.drawable.nuke_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = psyEnabled,
+                                                onCheckedChange = { psyEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (psyEnabled) R.drawable.psy_enabled else R.drawable.psy_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = lightEnabled,
+                                                onCheckedChange = { lightEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (lightEnabled) R.drawable.light_enabled else R.drawable.light_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = darkEnabled,
+                                                onCheckedChange = { darkEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (darkEnabled) R.drawable.dark_enabled else R.drawable.dark_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = almightyEnabled,
+                                                onCheckedChange = { almightyEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (almightyEnabled) R.drawable.almighty_enabled else R.drawable.almighty_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                        }
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                                            IconToggleButton(
+                                                checked = healEnabled,
+                                                onCheckedChange = { healEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (healEnabled) R.drawable.heal_enabled else R.drawable.heal_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = buffEnabled,
+                                                onCheckedChange = { buffEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (buffEnabled) R.drawable.buff_enabled else R.drawable.buff_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = debuffEnabled,
+                                                onCheckedChange = { debuffEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (debuffEnabled) R.drawable.debuff_enabled else R.drawable.debuff_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = statusEnabled,
+                                                onCheckedChange = { statusEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (statusEnabled) R.drawable.status_enabled else R.drawable.status_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = intelEnabled,
+                                                onCheckedChange = { intelEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (intelEnabled) R.drawable.intel_enabled else R.drawable.intel_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                        }
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+                                            IconToggleButton(
+                                                checked = defenseEnabled,
+                                                onCheckedChange = { defenseEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (defenseEnabled) R.drawable.defense_enabled else R.drawable.defense_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                            IconToggleButton(
+                                                checked = miscEnabled,
+                                                onCheckedChange = { miscEnabled = it }) {
+                                                Image(
+                                                    painter = painterResource(id = if (miscEnabled) R.drawable.misc_enabled else R.drawable.misc_disabled),
+                                                    contentDescription = null,
+                                                )
+                                            }
+                                        }
                                     }
                                 },
-                                dismissButton = {
+                                confirmButton = {
                                     TextButton(onClick = {
-                                        physEnabled = false
                                         openDialog = false
                                     }) {
-                                        Text(text = "Disable Phys")
+                                        Text(text = "Close Options")
                                     }
                                 }
                             )
@@ -140,19 +333,65 @@ class MainActivity : ComponentActivity() {
                                 namesSearched = namesSearched.toMutableList().apply{clear()}
                                 for (i in searchableList.indices) {
                                     val item = searchableList[i]
+                                    var addItem = true
                                     if (item[0].lowercase().contains(searchQuery.lowercase())) {
-                                        if (item[1] != "Physical" || (item[1] == "Physical" && physEnabled)) {
-                                            namesSearched = namesSearched + listOf(item)
+                                        when (item[1]) {
+                                            "Physical" -> if (!physEnabled) addItem = false
+                                            "Fire" -> if (!fireEnabled) addItem = false
+                                            "Ice" -> if (!iceEnabled) addItem = false
+                                            "Wind" -> if (!windEnabled) addItem = false
+                                            "Thunder" -> if (!thunderEnabled) addItem = false
+                                            "Nuclear" -> if (!nukeEnabled) addItem = false
+                                            "Psychokinesis (PSY)" -> if (!psyEnabled) addItem = false
+                                            "Light" -> if (!lightEnabled) addItem = false
+                                            "Dark" -> if (!darkEnabled) addItem = false
+                                            "Almighty" -> if (!almightyEnabled) addItem = false
+                                            "Heal" -> if (!healEnabled) addItem = false
+                                            "Buff" -> if (!buffEnabled) addItem = false
+                                            "Debuff" -> if (!debuffEnabled) addItem = false
+                                            "Status" -> if (!statusEnabled) addItem = false
+                                            "Intel" -> if (!intelEnabled) addItem = false
+                                            "Defense" -> if (!defenseEnabled) addItem = false
+                                            "Miscellaneous" -> if (!miscEnabled) addItem = false
                                         }
-                                    } else if (i == searchableList.size-1 && namesSearched.isEmpty()) {
-                                        namesSearched = listOf(listOf(
-                                            "[No Results]", "[N/A]", "[N/A]", "[N/A]", "[N/A]",
-                                            "[N/A]", "[N/A]", "[N/A]"))
+                                        if (addItem) namesSearched = namesSearched + listOf(item)
                                     }
+                                }
+                                if (namesSearched.isEmpty()) {
+                                    namesSearched = listOf(listOf(
+                                        "[No Results]", "[N/A]", "[N/A]", "[N/A]",
+                                        "[N/A]", "[N/A]", "[N/A]", "[N/A]")
+                                    )
                                 }
                                 searchQuery = ""
                             } else {
-                                namesSearched = searchableList
+                                namesSearched = namesSearched.toMutableList().apply{clear()}
+                                for (i in searchableList.indices) {
+                                    val item = searchableList[i]
+                                    var addItem = true
+                                    if (item[0].lowercase().contains(searchQuery.lowercase())) {
+                                        when (item[1]) {
+                                            "Physical" -> if (!physEnabled) addItem = false
+                                            "Fire" -> if (!fireEnabled) addItem = false
+                                            "Ice" -> if (!iceEnabled) addItem = false
+                                            "Wind" -> if (!windEnabled) addItem = false
+                                            "Thunder" -> if (!thunderEnabled) addItem = false
+                                            "Nuclear" -> if (!nukeEnabled) addItem = false
+                                            "Psychokinesis (PSY)" -> if (!psyEnabled) addItem = false
+                                            "Light" -> if (!lightEnabled) addItem = false
+                                            "Dark" -> if (!darkEnabled) addItem = false
+                                            "Almighty" -> if (!almightyEnabled) addItem = false
+                                            "Heal" -> if (!healEnabled) addItem = false
+                                            "Buff" -> if (!buffEnabled) addItem = false
+                                            "Debuff" -> if (!debuffEnabled) addItem = false
+                                            "Status" -> if (!statusEnabled) addItem = false
+                                            "Intel" -> if (!intelEnabled) addItem = false
+                                            "Defense" -> if (!defenseEnabled) addItem = false
+                                            "Miscellaneous" -> if (!miscEnabled) addItem = false
+                                        }
+                                        if (addItem) namesSearched = namesSearched + listOf(item)
+                                    }
+                                }
                             }
                         }) {
                             Icon(imageVector = Icons.Default.Search, contentDescription = "Search Spells")
@@ -275,29 +514,3 @@ fun ExpandableContent(
         }
     }
 }
-
-/* DEPRECATED
-            val csvString = applicationContext.assets
-                .open("core_spells.csv")
-                .bufferedReader()
-                .use { it.readText() }
-            val csvToParse = csvString.split("\\r?\\n".toRegex())
-
-            var names by remember {
-                mutableStateOf(listOf<Spell>())
-            }
-            for (i in 1 until csvToParse.size) {
-                if (csvToParse[i].isNotEmpty()) {
-                    val workingElement = csvToParse[i].split("(?<=,)(?! )".toRegex())
-                    names += Spell(
-                        workingElement[0].removeSuffix(","),
-                        workingElement[1].removeSuffix(","), workingElement[2].removeSuffix(","),
-                        workingElement[3].removePrefix("\"").removeSuffix(",").removeSuffix("\""),
-                        workingElement[4].removeSuffix(","),
-                        workingElement[5].removeSuffix(","), workingElement[6].removeSuffix(","),
-                        workingElement[7].removePrefix("\"").removeSuffix(",").removeSuffix("\"")
-                    )
-                }
-
-            }
-*/
