@@ -14,6 +14,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,6 +31,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -48,14 +50,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.anvee.foliooftheheart.ui.theme.FolioOfTheHeartTheme
 
 const val EXPANSION_ANIMATION_DURATION = 50
+var appLoading = true
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen().apply {
+            this.setKeepOnScreenCondition{appLoading}
+        }
         setContent {
             var csvArray = applicationContext.assets
                 .open("csv/core_spells.csv")
@@ -77,6 +84,22 @@ class MainActivity : ComponentActivity() {
             var namesSearched by remember {
                 mutableStateOf(listOf<List<String>>())
             }
+
+            val contentDisclaimer = listOf("[Content Disclaimer]", "Read", "Me",
+                "[N/A]", "[N/A]", "[N/A]", "[N/A]",
+                "This program is not official Grimoire of the Heart Content. " +
+                        "It is intended to be used as a quick reference; however it is fallible. " +
+                        "Please check the source material for ruling disputes. " +
+                        "Moreover, if you find an error in the data presented, please address it to me on Discord: _anvee. " +
+                        "Please do not bother the Core team over issues and suggestions with this app.")
+
+            val noSpells = listOf("[No Results]", "[N/A]", "[N/A]",
+                "[N/A]", "[N/A]", "[N/A]", "[N/A]",
+                "No spells were found for your search. " +
+                        "You may have mistyped the spell you were looking for, " +
+                        "or you may have to adjust your spell filters. (Click the cog to do so.) " +
+                        "It is also possible that the spell you are searching has not been entered into the app or that the spell has been entered into the app incorrectly." +
+                        "Feel free to contact me on Discord (_anvee) if you believe there may be an issue with the data.")
 
             var toExpandable by remember {
                 mutableStateOf(searchableList)
@@ -152,6 +175,10 @@ class MainActivity : ComponentActivity() {
                             mutableStateOf(true)
                         }
 
+                        var disclaimerState by remember {
+                            mutableStateOf(true)
+                        }
+
                         var openDialog by remember {
                             mutableStateOf(false)
                         }
@@ -169,7 +196,7 @@ class MainActivity : ComponentActivity() {
                                 },
                                 text = {
                                     Column {
-                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
                                             IconToggleButton(
                                                 checked = physEnabled,
                                                 onCheckedChange = { physEnabled = it }) {
@@ -215,7 +242,7 @@ class MainActivity : ComponentActivity() {
                                                 )
                                             }
                                         }
-                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
                                             IconToggleButton(
                                                 checked = nukeEnabled,
                                                 onCheckedChange = { nukeEnabled = it }) {
@@ -257,7 +284,7 @@ class MainActivity : ComponentActivity() {
                                                 )
                                             }
                                         }
-                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
                                             IconToggleButton(
                                                 checked = healEnabled,
                                                 onCheckedChange = { healEnabled = it }) {
@@ -299,7 +326,7 @@ class MainActivity : ComponentActivity() {
                                                 )
                                             }
                                         }
-                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
                                             IconToggleButton(
                                                 checked = defenseEnabled,
                                                 onCheckedChange = { defenseEnabled = it }) {
@@ -317,6 +344,16 @@ class MainActivity : ComponentActivity() {
                                                 )
                                             }
                                         }
+                                        Divider()
+                                        Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
+                                            Text(text = "Show Disclaimer ")
+                                            Switch(
+                                                checked = disclaimerState,
+                                                onCheckedChange = {
+                                                    disclaimerState = it
+                                                })
+                                        }
+                                        Text (text = "Build: Preview 1 (2023/10/28)", modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
                                     }
                                 },
                                 confirmButton = {
@@ -331,6 +368,7 @@ class MainActivity : ComponentActivity() {
                         Button(onClick = {
                             if (searchQuery.isNotBlank()) {
                                 namesSearched = namesSearched.toMutableList().apply{clear()}
+                                if (disclaimerState) namesSearched = namesSearched + listOf(contentDisclaimer)
                                 for (i in searchableList.indices) {
                                     val item = searchableList[i]
                                     var addItem = true
@@ -357,15 +395,13 @@ class MainActivity : ComponentActivity() {
                                         if (addItem) namesSearched = namesSearched + listOf(item)
                                     }
                                 }
-                                if (namesSearched.isEmpty()) {
-                                    namesSearched = listOf(listOf(
-                                        "[No Results]", "[N/A]", "[N/A]", "[N/A]",
-                                        "[N/A]", "[N/A]", "[N/A]", "[N/A]")
-                                    )
-                                }
+                                if (namesSearched.isEmpty() || (namesSearched.size == 1 && disclaimerState)) {
+                                    namesSearched = namesSearched + listOf(noSpells)
+                                    }
                                 searchQuery = ""
                             } else {
                                 namesSearched = namesSearched.toMutableList().apply{clear()}
+                                if (disclaimerState) namesSearched = namesSearched + listOf(contentDisclaimer)
                                 for (i in searchableList.indices) {
                                     val item = searchableList[i]
                                     var addItem = true
@@ -399,7 +435,7 @@ class MainActivity : ComponentActivity() {
                     }
                     Divider(modifier = Modifier.padding(vertical = 4.dp))
                     toExpandable = namesSearched.ifEmpty {
-                        searchableList
+                        listOf(contentDisclaimer) + searchableList
                     }
                     var isLoading by remember {
                         mutableStateOf(true)
@@ -424,6 +460,7 @@ class MainActivity : ComponentActivity() {
                         isLoading = false
                     }
                 }
+                appLoading = false
             }
         }
     }
