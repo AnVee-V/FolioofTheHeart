@@ -14,7 +14,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -53,7 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.anvee.foliooftheheart.ui.theme.FolioOfTheHeartTheme
 
-const val EXPANSION_ANIMATION_DURATION = 50
+const val EXPANSION_ANIMATION_DURATION = 50 // Animation duration for expanding spells
 var appLoading = true
 
 class MainActivity : ComponentActivity() {
@@ -64,27 +63,32 @@ class MainActivity : ComponentActivity() {
             this.setKeepOnScreenCondition{appLoading}
         }
         setContent {
-            var csvArray = applicationContext.assets
+            // Load spell arrays. If you want to import your own spells, follow the template here.
+            val coreArray = applicationContext.assets
                 .open("csv/core_spells.csv")
                 .bufferedReader()
-                .useLines { it.toList() }
-            csvArray = List(csvArray.size-1) {index ->
-                csvArray[index+1].replace("\"", "")
+                .useLines {it.toList()}
+            val seaArray = applicationContext.assets
+                .open("csv/sea_spells.csv")
+                .bufferedReader()
+                .useLines{it.toList()}
+            /*
+            val yourArray = applicationContext.assets
+                .open(csv/your_spells.csv)
+                .bufferedReader()
+                .useLines{it.toList()}
+            */
+            // Join the loaded arrays and Parse them
+            val joinedArray = (coreArray.drop(1)
+                    // .drop(1) prevents the csv header from being added as a spell.
+                    + seaArray.drop(1)
+                    //+ yourArray.drop(1)
+            )
+            val searchableList = List(joinedArray.size) { index ->
+                // Parses joinedArray into a format for the Expandable Cards to use
+                joinedArray[index].replace("\"", "").split(",(?! )".toRegex())
             }
-            val searchableList = List(csvArray.size) {index ->
-                csvArray[index].split(",(?! )".toRegex())
-            }
-
-            var expandedItem by remember {
-                mutableStateOf("")
-            }
-            var searchQuery by remember {
-                mutableStateOf("")
-            }
-            var namesSearched by remember {
-                mutableStateOf(listOf<List<String>>())
-            }
-
+            // Declare remaining values
             val contentDisclaimer = listOf("[Content Disclaimer]", "Read", "Me",
                 "[N/A]", "[N/A]", "[N/A]", "[N/A]",
                 "This program is not official Grimoire of the Heart Content. " +
@@ -92,7 +96,6 @@ class MainActivity : ComponentActivity() {
                         "Please check the source material for ruling disputes. " +
                         "Moreover, if you find an error in the data presented, please address it to me on Discord: _anvee. " +
                         "Please do not bother the Core team over issues and suggestions with this app.")
-
             val noSpells = listOf("[No Results]", "[N/A]", "[N/A]",
                 "[N/A]", "[N/A]", "[N/A]", "[N/A]",
                 "No spells were found for your search. " +
@@ -100,8 +103,21 @@ class MainActivity : ComponentActivity() {
                         "or you may have to adjust your spell filters. (Click the cog to do so.) " +
                         "It is also possible that the spell you are searching has not been entered into the app or that the spell has been entered into the app incorrectly." +
                         "Feel free to contact me on Discord (_anvee) if you believe there may be an issue with the data.")
-
+            // Declare Variables
+            var expandedItem by remember {
+                // Name of the currently expanded spell
+                mutableStateOf("")
+            }
+            var searchQuery by remember {
+                // The current entry of the search field
+                mutableStateOf("")
+            }
+            var namesSearched by remember {
+                // The list of spells pulled from the searchableList using the searchQuery
+                mutableStateOf(listOf<List<String>>())
+            }
             var toExpandable by remember {
+                // The list of spells that get turned into expandable spells.
                 mutableStateOf(searchableList)
             }
             FolioOfTheHeartTheme {

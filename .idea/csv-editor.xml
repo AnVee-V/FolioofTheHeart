@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="C:\Users\tryst\AndroidStudioProjects\FolioofTheHeart\app\src\main\assets\csv\sea_spells.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
