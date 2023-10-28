@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen().apply {
-            this.setKeepOnScreenCondition{appLoading}
+            this.setKeepOnScreenCondition { appLoading }
         }
         setContent {
             // Get orientation
@@ -73,11 +73,11 @@ class MainActivity : ComponentActivity() {
             val coreArray = applicationContext.assets
                 .open("csv/core_spells.csv")
                 .bufferedReader()
-                .useLines {it.toList()}
+                .useLines { it.toList() }
             val seaArray = applicationContext.assets
                 .open("csv/sea_spells.csv")
                 .bufferedReader()
-                .useLines{it.toList()}
+                .useLines { it.toList() }
             /*
             val yourArray = applicationContext.assets
                 .open(csv/your_spells.csv)
@@ -89,26 +89,30 @@ class MainActivity : ComponentActivity() {
                     // .drop(1) prevents the csv header from being added as a spell.
                     + seaArray.drop(1)
                     //+ yourArray.drop(1)
-            )
+                    )
             val searchableList = List(joinedArray.size) { index ->
                 // Parses joinedArray into a format for the Expandable Cards to use
                 joinedArray[index].replace("\"", "").split(",(?! )".toRegex())
             }
             // Declare application 'spell's
-            val contentDisclaimer = listOf("[Content Disclaimer]", "Read", "Me",
+            val contentDisclaimer = listOf(
+                "[Content Disclaimer]", "Read", "Me",
                 "[N/A]", "[N/A]", "[N/A]", "[N/A]",
                 "This program is not official Grimoire of the Heart Content. " +
                         "It is intended to be used as a quick reference; however it is fallible. " +
                         "Please check the source material for ruling disputes. " +
                         "Moreover, if you find an error in the data presented, please address it to me on Discord: _anvee. " +
-                        "Please do not bother the Core team over issues and suggestions with this app.")
-            val noSpells = listOf("[No Results]", "[N/A]", "[N/A]",
+                        "Please do not bother the Core team over issues and suggestions with this app."
+            )
+            val noSpells = listOf(
+                "[No Results]", "[N/A]", "[N/A]",
                 "[N/A]", "[N/A]", "[N/A]", "[N/A]",
                 "No spells were found for your search. " +
                         "You may have mistyped the spell you were looking for, " +
                         "or you may have to adjust your spell filters. (Click the cog to do so.) " +
                         "It is also possible that the spell you are searching has not been entered into the app or that the spell has been entered into the app incorrectly." +
-                        "Feel free to contact me on Discord (_anvee) if you believe there may be an issue with the data.")
+                        "Feel free to contact me on Discord (_anvee) if you believe there may be an issue with the data."
+            )
             // Declare Search Variables
             var expandedItem by remember {
                 // Name of the currently expanded spell
@@ -211,12 +215,12 @@ class MainActivity : ComponentActivity() {
             }
             // Drawing Begins Here
             FolioOfTheHeartTheme {
-                Column (
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(16.dp)
                 ) {
-                    Row ( // Searchbar, Settings, Search Button
+                    Row( // Searchbar, Settings, Search Button
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
@@ -225,505 +229,655 @@ class MainActivity : ComponentActivity() {
                             onValueChange = { text ->
                                 searchQuery = text
                             },
-                            label = { Text(text = "Search Spells")},
-                            placeholder = { Text(text = "Click Search to Refresh")},
+                            label = { Text(text = "Search Spells") },
+                            placeholder = { Text(text = "Click Search to Refresh") },
                             modifier = Modifier.weight(1f)
                         )
                         IconButton(onClick = { openDialog = true }) {
-                            Icon(imageVector = Icons.Default.Settings,
-                                contentDescription = "Filter Spells")
+                            Icon(
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = "Filter Spells"
+                            )
                         }
                         // Settings Dialog
                         if (openDialog) {
                             AlertDialog(
                                 onDismissRequest = { openDialog = false },
-                                title = {Text(text = "Toggle Spell Types")                                },
+                                title = { Text(text = "Toggle Spell Types") },
                                 properties = DialogProperties(usePlatformDefaultWidth = false),
                                 text = {
-                                    when (orientation) {
-                                        Configuration.ORIENTATION_PORTRAIT -> {
-                                            Column (
-                                                horizontalAlignment = Alignment.CenterHorizontally,
-                                                verticalArrangement = Arrangement.SpaceBetween,
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.SpaceBetween,
+                                    ) {
+                                        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
                                             ) {
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = physEnabled,
-                                                        onCheckedChange = { physEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (physEnabled) R.drawable.phys_enabled else R.drawable.phys_disabled),
-                                                            contentDescription = "Toggle Phys",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = fireEnabled,
-                                                        onCheckedChange = { fireEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (fireEnabled) R.drawable.fire_enabled else R.drawable.fire_disabled),
-                                                            contentDescription = "Toggle Fire",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = iceEnabled,
-                                                        onCheckedChange = { iceEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (iceEnabled) R.drawable.ice_enabled else R.drawable.ice_disabled),
-                                                            contentDescription = "Toggle Ice"
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = windEnabled,
-                                                        onCheckedChange = { windEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (windEnabled) R.drawable.wind_enabled else R.drawable.wind_disabled),
-                                                            contentDescription = "Toggle Wind",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = thunderEnabled,
-                                                        onCheckedChange = { thunderEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (thunderEnabled) R.drawable.thunder_enabled else R.drawable.thunder_disabled),
-                                                            contentDescription = "Toggle Thunder",
-                                                        )
-                                                    }
-                                                }
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = nukeEnabled,
-                                                        onCheckedChange = { nukeEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (nukeEnabled) R.drawable.nuke_enabled else R.drawable.nuke_disabled),
-                                                            contentDescription = "Toggle Nuke",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = psyEnabled,
-                                                        onCheckedChange = { psyEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (psyEnabled) R.drawable.psy_enabled else R.drawable.psy_disabled),
-                                                            contentDescription = "Toggle Psy",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = lightEnabled,
-                                                        onCheckedChange = { lightEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (lightEnabled) R.drawable.light_enabled else R.drawable.light_disabled),
-                                                            contentDescription = "Toggle Light",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = darkEnabled,
-                                                        onCheckedChange = { darkEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (darkEnabled) R.drawable.dark_enabled else R.drawable.dark_disabled),
-                                                            contentDescription = "Toggle Dark",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = almightyEnabled,
-                                                        onCheckedChange = { almightyEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (almightyEnabled) R.drawable.almighty_enabled else R.drawable.almighty_disabled),
-                                                            contentDescription = "Toggle Almighty",
-                                                        )
-                                                    }
-                                                }
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = healEnabled,
-                                                        onCheckedChange = { healEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (healEnabled) R.drawable.heal_enabled else R.drawable.heal_disabled),
-                                                            contentDescription = "Toggle Heal",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = buffEnabled,
-                                                        onCheckedChange = { buffEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (buffEnabled) R.drawable.buff_enabled else R.drawable.buff_disabled),
-                                                            contentDescription = "Toggle Buff",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = debuffEnabled,
-                                                        onCheckedChange = { debuffEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (debuffEnabled) R.drawable.debuff_enabled else R.drawable.debuff_disabled),
-                                                            contentDescription = "Toggle Debuff",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = statusEnabled,
-                                                        onCheckedChange = { statusEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (statusEnabled) R.drawable.status_enabled else R.drawable.status_disabled),
-                                                            contentDescription = "Toggle Status",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = intelEnabled,
-                                                        onCheckedChange = { intelEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (intelEnabled) R.drawable.intel_enabled else R.drawable.intel_disabled),
-                                                            contentDescription = "Toggle Intel",
-                                                        )
-                                                    }
-                                                }
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = defenseEnabled,
-                                                        onCheckedChange = { defenseEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (defenseEnabled) R.drawable.defense_enabled else R.drawable.defense_disabled),
-                                                            contentDescription = "Toggle Defense",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = miscEnabled,
-                                                        onCheckedChange = { miscEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (miscEnabled) R.drawable.misc_enabled else R.drawable.misc_disabled),
-                                                            contentDescription = "Toggle Miscellaneous",
-                                                        )
-                                                    }
-                                                }
-                                                Divider()
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = waterEnabled,
-                                                        onCheckedChange = { waterEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (waterEnabled) R.drawable.water_enabled else R.drawable.water_disabled),
-                                                            contentDescription = "Toggle Water",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = earthEnabled,
-                                                        onCheckedChange = { earthEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (earthEnabled) R.drawable.earth_enabled else R.drawable.earth_disabled),
-                                                            contentDescription = "Toggle Earth",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = fusionEnabled,
-                                                        onCheckedChange = { fusionEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (fusionEnabled) R.drawable.fusion_enabled else R.drawable.fusion_disabled),
-                                                            contentDescription = "Toggle Fusion",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = cosmicEnabled,
-                                                        onCheckedChange = { cosmicEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (cosmicEnabled) R.drawable.cosmic_enabled else R.drawable.cosmic_disabled),
-                                                            contentDescription = "Toggle Cosmic",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = occultEnabled,
-                                                        onCheckedChange = { occultEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (occultEnabled) R.drawable.occult_enabled else R.drawable.occult_disabled),
-                                                            contentDescription = "Toggle Occult",
-                                                        )
-                                                    }
-                                                }
-                                                Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                                                    IconToggleButton(
-                                                        checked = gunEnabled,
-                                                        onCheckedChange = { gunEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (gunEnabled) R.drawable.gun_enabled else R.drawable.gun_disabled),
-                                                            contentDescription = "Toggle Gun",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = bloomEnabled,
-                                                        onCheckedChange = { bloomEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (bloomEnabled) R.drawable.bloom_enabled else R.drawable.bloom_disabled),
-                                                            contentDescription = "Toggle Bloom",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = weatherEnabled,
-                                                        onCheckedChange = { weatherEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (weatherEnabled) R.drawable.weather_enabled else R.drawable.weather_disabled),
-                                                            contentDescription = "Toggle Weather",
-                                                        )
-                                                    }
-                                                }
-                                                Divider()
-                                                Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
-                                                    Text(text = "Show Disclaimer ")
-                                                    Switch(
-                                                        checked = disclaimerEnabled,
-                                                        onCheckedChange = { disclaimerEnabled = it }
+                                                IconToggleButton(
+                                                    checked = physEnabled,
+                                                    onCheckedChange = {
+                                                        physEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (physEnabled) R.drawable.phys_enabled else R.drawable.phys_disabled),
+                                                        contentDescription = "Toggle Phys",
                                                     )
                                                 }
-                                                Text (text = "Build: Release 1 (2023/10/28)", modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+                                                IconToggleButton(
+                                                    checked = fireEnabled,
+                                                    onCheckedChange = {
+                                                        fireEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (fireEnabled) R.drawable.fire_enabled else R.drawable.fire_disabled),
+                                                        contentDescription = "Toggle Fire",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = iceEnabled,
+                                                    onCheckedChange = { iceEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (iceEnabled) R.drawable.ice_enabled else R.drawable.ice_disabled),
+                                                        contentDescription = "Toggle Ice"
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = windEnabled,
+                                                    onCheckedChange = {
+                                                        windEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (windEnabled) R.drawable.wind_enabled else R.drawable.wind_disabled),
+                                                        contentDescription = "Toggle Wind",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = thunderEnabled,
+                                                    onCheckedChange = {
+                                                        thunderEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (thunderEnabled) R.drawable.thunder_enabled else R.drawable.thunder_disabled),
+                                                        contentDescription = "Toggle Thunder",
+                                                    )
+                                                }
                                             }
-                                        } else -> {
-                                            Column (
-                                                horizontalAlignment = Alignment.CenterHorizontally,
-                                                verticalArrangement = Arrangement.SpaceBetween
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
                                             ) {
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = physEnabled,
-                                                        onCheckedChange = { physEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (physEnabled) R.drawable.phys_enabled else R.drawable.phys_disabled),
-                                                            contentDescription = "Toggle Phys",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = fireEnabled,
-                                                        onCheckedChange = { fireEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (fireEnabled) R.drawable.fire_enabled else R.drawable.fire_disabled),
-                                                            contentDescription = "Toggle Fire",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = iceEnabled,
-                                                        onCheckedChange = { iceEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (iceEnabled) R.drawable.ice_enabled else R.drawable.ice_disabled),
-                                                            contentDescription = "Toggle Ice"
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = windEnabled,
-                                                        onCheckedChange = { windEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (windEnabled) R.drawable.wind_enabled else R.drawable.wind_disabled),
-                                                            contentDescription = "Toggle Wind",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = thunderEnabled,
-                                                        onCheckedChange = { thunderEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (thunderEnabled) R.drawable.thunder_enabled else R.drawable.thunder_disabled),
-                                                            contentDescription = "Toggle Thunder",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = nukeEnabled,
-                                                        onCheckedChange = { nukeEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (nukeEnabled) R.drawable.nuke_enabled else R.drawable.nuke_disabled),
-                                                            contentDescription = "Toggle Nuke",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = psyEnabled,
-                                                        onCheckedChange = { psyEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (psyEnabled) R.drawable.psy_enabled else R.drawable.psy_disabled),
-                                                            contentDescription = "Toggle Psy",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = lightEnabled,
-                                                        onCheckedChange = { lightEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (lightEnabled) R.drawable.light_enabled else R.drawable.light_disabled),
-                                                            contentDescription = "Toggle Light",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = darkEnabled,
-                                                        onCheckedChange = { darkEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (darkEnabled) R.drawable.dark_enabled else R.drawable.dark_disabled),
-                                                            contentDescription = "Toggle Dark",
-                                                        )
-                                                    }
-                                                }
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = almightyEnabled,
-                                                        onCheckedChange = { almightyEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (almightyEnabled) R.drawable.almighty_enabled else R.drawable.almighty_disabled),
-                                                            contentDescription = "Toggle Almighty",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = healEnabled,
-                                                        onCheckedChange = { healEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (healEnabled) R.drawable.heal_enabled else R.drawable.heal_disabled),
-                                                            contentDescription = "Toggle Heal",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = buffEnabled,
-                                                        onCheckedChange = { buffEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (buffEnabled) R.drawable.buff_enabled else R.drawable.buff_disabled),
-                                                            contentDescription = "Toggle Buff",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = debuffEnabled,
-                                                        onCheckedChange = { debuffEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (debuffEnabled) R.drawable.debuff_enabled else R.drawable.debuff_disabled),
-                                                            contentDescription = "Toggle Debuff",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = statusEnabled,
-                                                        onCheckedChange = { statusEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (statusEnabled) R.drawable.status_enabled else R.drawable.status_disabled),
-                                                            contentDescription = "Toggle Status",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = intelEnabled,
-                                                        onCheckedChange = { intelEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (intelEnabled) R.drawable.intel_enabled else R.drawable.intel_disabled),
-                                                            contentDescription = "Toggle Intel",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = defenseEnabled,
-                                                        onCheckedChange = { defenseEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (defenseEnabled) R.drawable.defense_enabled else R.drawable.defense_disabled),
-                                                            contentDescription = "Toggle Defense",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = miscEnabled,
-                                                        onCheckedChange = { miscEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (miscEnabled) R.drawable.misc_enabled else R.drawable.misc_disabled),
-                                                            contentDescription = "Toggle Miscellaneous",
-                                                        )
-                                                    }
-                                                }
-                                                Divider()
-                                                Row(
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    horizontalArrangement = Arrangement.Center,
-                                                    verticalAlignment = Alignment.CenterVertically
-                                                ) {
-                                                    IconToggleButton(
-                                                        checked = waterEnabled,
-                                                        onCheckedChange = { waterEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (waterEnabled) R.drawable.water_enabled else R.drawable.water_disabled),
-                                                            contentDescription = "Toggle Water",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = earthEnabled,
-                                                        onCheckedChange = { earthEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (earthEnabled) R.drawable.earth_enabled else R.drawable.earth_disabled),
-                                                            contentDescription = "Toggle Earth",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = fusionEnabled,
-                                                        onCheckedChange = { fusionEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (fusionEnabled) R.drawable.fusion_enabled else R.drawable.fusion_disabled),
-                                                            contentDescription = "Toggle Fusion",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = cosmicEnabled,
-                                                        onCheckedChange = { cosmicEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (cosmicEnabled) R.drawable.cosmic_enabled else R.drawable.cosmic_disabled),
-                                                            contentDescription = "Toggle Cosmic",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = occultEnabled,
-                                                        onCheckedChange = { occultEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (occultEnabled) R.drawable.occult_enabled else R.drawable.occult_disabled),
-                                                            contentDescription = "Toggle Occult",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = gunEnabled,
-                                                        onCheckedChange = { gunEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (gunEnabled) R.drawable.gun_enabled else R.drawable.gun_disabled),
-                                                            contentDescription = "Toggle Gun",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = bloomEnabled,
-                                                        onCheckedChange = { bloomEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (bloomEnabled) R.drawable.bloom_enabled else R.drawable.bloom_disabled),
-                                                            contentDescription = "Toggle Bloom",
-                                                        )
-                                                    }
-                                                    IconToggleButton(
-                                                        checked = weatherEnabled,
-                                                        onCheckedChange = { weatherEnabled = it }) {
-                                                        Image(
-                                                            painter = painterResource(id = if (weatherEnabled) R.drawable.weather_enabled else R.drawable.weather_disabled),
-                                                            contentDescription = "Toggle Weather",
-                                                        )
-                                                    }
-                                                }
-                                                Divider()
-                                                Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
-                                                    Text(text = "Show Disclaimer ")
-                                                    Switch(
-                                                        checked = disclaimerEnabled,
-                                                        onCheckedChange = { disclaimerEnabled = it }
+                                                IconToggleButton(
+                                                    checked = nukeEnabled,
+                                                    onCheckedChange = {
+                                                        nukeEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (nukeEnabled) R.drawable.nuke_enabled else R.drawable.nuke_disabled),
+                                                        contentDescription = "Toggle Nuke",
                                                     )
                                                 }
-                                                Text (text = "Build: Release 1 (2023/10/28)", modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+                                                IconToggleButton(
+                                                    checked = psyEnabled,
+                                                    onCheckedChange = { psyEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (psyEnabled) R.drawable.psy_enabled else R.drawable.psy_disabled),
+                                                        contentDescription = "Toggle Psy",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = lightEnabled,
+                                                    onCheckedChange = {
+                                                        lightEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (lightEnabled) R.drawable.light_enabled else R.drawable.light_disabled),
+                                                        contentDescription = "Toggle Light",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = darkEnabled,
+                                                    onCheckedChange = {
+                                                        darkEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (darkEnabled) R.drawable.dark_enabled else R.drawable.dark_disabled),
+                                                        contentDescription = "Toggle Dark",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = almightyEnabled,
+                                                    onCheckedChange = {
+                                                        almightyEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (almightyEnabled) R.drawable.almighty_enabled else R.drawable.almighty_disabled),
+                                                        contentDescription = "Toggle Almighty",
+                                                    )
+                                                }
+                                            }
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconToggleButton(
+                                                    checked = healEnabled,
+                                                    onCheckedChange = {
+                                                        healEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (healEnabled) R.drawable.heal_enabled else R.drawable.heal_disabled),
+                                                        contentDescription = "Toggle Heal",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = buffEnabled,
+                                                    onCheckedChange = {
+                                                        buffEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (buffEnabled) R.drawable.buff_enabled else R.drawable.buff_disabled),
+                                                        contentDescription = "Toggle Buff",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = debuffEnabled,
+                                                    onCheckedChange = {
+                                                        debuffEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (debuffEnabled) R.drawable.debuff_enabled else R.drawable.debuff_disabled),
+                                                        contentDescription = "Toggle Debuff",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = statusEnabled,
+                                                    onCheckedChange = {
+                                                        statusEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (statusEnabled) R.drawable.status_enabled else R.drawable.status_disabled),
+                                                        contentDescription = "Toggle Status",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = intelEnabled,
+                                                    onCheckedChange = {
+                                                        intelEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (intelEnabled) R.drawable.intel_enabled else R.drawable.intel_disabled),
+                                                        contentDescription = "Toggle Intel",
+                                                    )
+                                                }
+                                            }
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconToggleButton(
+                                                    checked = defenseEnabled,
+                                                    onCheckedChange = {
+                                                        defenseEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (defenseEnabled) R.drawable.defense_enabled else R.drawable.defense_disabled),
+                                                        contentDescription = "Toggle Defense",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = miscEnabled,
+                                                    onCheckedChange = {
+                                                        miscEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (miscEnabled) R.drawable.misc_enabled else R.drawable.misc_disabled),
+                                                        contentDescription = "Toggle Miscellaneous",
+                                                    )
+                                                }
+                                            }
+                                            Divider()
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconToggleButton(
+                                                    checked = waterEnabled,
+                                                    onCheckedChange = {
+                                                        waterEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (waterEnabled) R.drawable.water_enabled else R.drawable.water_disabled),
+                                                        contentDescription = "Toggle Water",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = earthEnabled,
+                                                    onCheckedChange = {
+                                                        earthEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (earthEnabled) R.drawable.earth_enabled else R.drawable.earth_disabled),
+                                                        contentDescription = "Toggle Earth",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = fusionEnabled,
+                                                    onCheckedChange = {
+                                                        fusionEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (fusionEnabled) R.drawable.fusion_enabled else R.drawable.fusion_disabled),
+                                                        contentDescription = "Toggle Fusion",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = cosmicEnabled,
+                                                    onCheckedChange = {
+                                                        cosmicEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (cosmicEnabled) R.drawable.cosmic_enabled else R.drawable.cosmic_disabled),
+                                                        contentDescription = "Toggle Cosmic",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = occultEnabled,
+                                                    onCheckedChange = {
+                                                        occultEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (occultEnabled) R.drawable.occult_enabled else R.drawable.occult_disabled),
+                                                        contentDescription = "Toggle Occult",
+                                                    )
+                                                }
+                                            }
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconToggleButton(
+                                                    checked = gunEnabled,
+                                                    onCheckedChange = { gunEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (gunEnabled) R.drawable.gun_enabled else R.drawable.gun_disabled),
+                                                        contentDescription = "Toggle Gun",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = bloomEnabled,
+                                                    onCheckedChange = {
+                                                        bloomEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (bloomEnabled) R.drawable.bloom_enabled else R.drawable.bloom_disabled),
+                                                        contentDescription = "Toggle Bloom",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = weatherEnabled,
+                                                    onCheckedChange = {
+                                                        weatherEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (weatherEnabled) R.drawable.weather_enabled else R.drawable.weather_disabled),
+                                                        contentDescription = "Toggle Weather",
+                                                    )
+                                                }
+                                            }
+                                        } else {
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconToggleButton(
+                                                    checked = physEnabled,
+                                                    onCheckedChange = { physEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (physEnabled) R.drawable.phys_enabled else R.drawable.phys_disabled),
+                                                        contentDescription = "Toggle Phys",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = fireEnabled,
+                                                    onCheckedChange = { fireEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (fireEnabled) R.drawable.fire_enabled else R.drawable.fire_disabled),
+                                                        contentDescription = "Toggle Fire",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = iceEnabled,
+                                                    onCheckedChange = { iceEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (iceEnabled) R.drawable.ice_enabled else R.drawable.ice_disabled),
+                                                        contentDescription = "Toggle Ice"
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = windEnabled,
+                                                    onCheckedChange = { windEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (windEnabled) R.drawable.wind_enabled else R.drawable.wind_disabled),
+                                                        contentDescription = "Toggle Wind",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = thunderEnabled,
+                                                    onCheckedChange = { thunderEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (thunderEnabled) R.drawable.thunder_enabled else R.drawable.thunder_disabled),
+                                                        contentDescription = "Toggle Thunder",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = nukeEnabled,
+                                                    onCheckedChange = { nukeEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (nukeEnabled) R.drawable.nuke_enabled else R.drawable.nuke_disabled),
+                                                        contentDescription = "Toggle Nuke",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = psyEnabled,
+                                                    onCheckedChange = { psyEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (psyEnabled) R.drawable.psy_enabled else R.drawable.psy_disabled),
+                                                        contentDescription = "Toggle Psy",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = lightEnabled,
+                                                    onCheckedChange = { lightEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (lightEnabled) R.drawable.light_enabled else R.drawable.light_disabled),
+                                                        contentDescription = "Toggle Light",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = darkEnabled,
+                                                    onCheckedChange = { darkEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (darkEnabled) R.drawable.dark_enabled else R.drawable.dark_disabled),
+                                                        contentDescription = "Toggle Dark",
+                                                    )
+                                                }
+                                            }
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconToggleButton(
+                                                    checked = almightyEnabled,
+                                                    onCheckedChange = {
+                                                        almightyEnabled = it
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (almightyEnabled) R.drawable.almighty_enabled else R.drawable.almighty_disabled),
+                                                        contentDescription = "Toggle Almighty",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = healEnabled,
+                                                    onCheckedChange = { healEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (healEnabled) R.drawable.heal_enabled else R.drawable.heal_disabled),
+                                                        contentDescription = "Toggle Heal",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = buffEnabled,
+                                                    onCheckedChange = { buffEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (buffEnabled) R.drawable.buff_enabled else R.drawable.buff_disabled),
+                                                        contentDescription = "Toggle Buff",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = debuffEnabled,
+                                                    onCheckedChange = { debuffEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (debuffEnabled) R.drawable.debuff_enabled else R.drawable.debuff_disabled),
+                                                        contentDescription = "Toggle Debuff",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = statusEnabled,
+                                                    onCheckedChange = { statusEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (statusEnabled) R.drawable.status_enabled else R.drawable.status_disabled),
+                                                        contentDescription = "Toggle Status",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = intelEnabled,
+                                                    onCheckedChange = { intelEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (intelEnabled) R.drawable.intel_enabled else R.drawable.intel_disabled),
+                                                        contentDescription = "Toggle Intel",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = defenseEnabled,
+                                                    onCheckedChange = { defenseEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (defenseEnabled) R.drawable.defense_enabled else R.drawable.defense_disabled),
+                                                        contentDescription = "Toggle Defense",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = miscEnabled,
+                                                    onCheckedChange = { miscEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (miscEnabled) R.drawable.misc_enabled else R.drawable.misc_disabled),
+                                                        contentDescription = "Toggle Miscellaneous",
+                                                    )
+                                                }
+                                            }
+                                            Divider()
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconToggleButton(
+                                                    checked = waterEnabled,
+                                                    onCheckedChange = { waterEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (waterEnabled) R.drawable.water_enabled else R.drawable.water_disabled),
+                                                        contentDescription = "Toggle Water",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = earthEnabled,
+                                                    onCheckedChange = { earthEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (earthEnabled) R.drawable.earth_enabled else R.drawable.earth_disabled),
+                                                        contentDescription = "Toggle Earth",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = fusionEnabled,
+                                                    onCheckedChange = { fusionEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (fusionEnabled) R.drawable.fusion_enabled else R.drawable.fusion_disabled),
+                                                        contentDescription = "Toggle Fusion",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = cosmicEnabled,
+                                                    onCheckedChange = { cosmicEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (cosmicEnabled) R.drawable.cosmic_enabled else R.drawable.cosmic_disabled),
+                                                        contentDescription = "Toggle Cosmic",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = occultEnabled,
+                                                    onCheckedChange = { occultEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (occultEnabled) R.drawable.occult_enabled else R.drawable.occult_disabled),
+                                                        contentDescription = "Toggle Occult",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = gunEnabled,
+                                                    onCheckedChange = { gunEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (gunEnabled) R.drawable.gun_enabled else R.drawable.gun_disabled),
+                                                        contentDescription = "Toggle Gun",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = bloomEnabled,
+                                                    onCheckedChange = { bloomEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (bloomEnabled) R.drawable.bloom_enabled else R.drawable.bloom_disabled),
+                                                        contentDescription = "Toggle Bloom",
+                                                    )
+                                                }
+                                                IconToggleButton(
+                                                    checked = weatherEnabled,
+                                                    onCheckedChange = { weatherEnabled = it }) {
+                                                    Image(
+                                                        painter = painterResource(id = if (weatherEnabled) R.drawable.weather_enabled else R.drawable.weather_disabled),
+                                                        contentDescription = "Toggle Weather",
+                                                    )
+                                                }
+                                            }
+                                            Divider()
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.Center,
+                                                verticalAlignment = Alignment.CenterVertically
+                                            ) {
+                                                IconButton(
+                                                    onClick = {
+                                                        physEnabled = true
+                                                        fireEnabled = true
+                                                        iceEnabled = true
+                                                        windEnabled = true
+                                                        thunderEnabled = true
+                                                        nukeEnabled = true
+                                                        psyEnabled = true
+                                                        lightEnabled = true
+                                                        darkEnabled = true
+                                                        almightyEnabled = true
+                                                        healEnabled = true
+                                                        buffEnabled = true
+                                                        debuffEnabled = true
+                                                        statusEnabled = true
+                                                        intelEnabled = true
+                                                        defenseEnabled = true
+                                                        miscEnabled = true
+                                                        waterEnabled = true
+                                                        earthEnabled = true
+                                                        fusionEnabled = true
+                                                        cosmicEnabled = true
+                                                        occultEnabled = true
+                                                        gunEnabled = true
+                                                        bloomEnabled = true
+                                                        weatherEnabled = true
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = R.drawable.on),
+                                                        contentDescription = "Enable all Types",
+                                                    )
+                                                }
+                                                IconButton(
+                                                    onClick = {
+                                                        physEnabled = !physEnabled
+                                                        fireEnabled = !fireEnabled
+                                                        iceEnabled = !iceEnabled
+                                                        windEnabled = !windEnabled
+                                                        thunderEnabled = !thunderEnabled
+                                                        nukeEnabled = !nukeEnabled
+                                                        psyEnabled = !psyEnabled
+                                                        lightEnabled = !lightEnabled
+                                                        darkEnabled = !darkEnabled
+                                                        almightyEnabled = !almightyEnabled
+                                                        healEnabled = !healEnabled
+                                                        buffEnabled = !buffEnabled
+                                                        debuffEnabled = !debuffEnabled
+                                                        statusEnabled = !statusEnabled
+                                                        intelEnabled = !intelEnabled
+                                                        defenseEnabled = !defenseEnabled
+                                                        miscEnabled = !miscEnabled
+                                                        waterEnabled = !waterEnabled
+                                                        earthEnabled = !earthEnabled
+                                                        fusionEnabled = !fusionEnabled
+                                                        cosmicEnabled = !cosmicEnabled
+                                                        occultEnabled = !occultEnabled
+                                                        gunEnabled = !gunEnabled
+                                                        bloomEnabled = !bloomEnabled
+                                                        weatherEnabled = !weatherEnabled
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = R.drawable.toggle),
+                                                        contentDescription = "Toggle all Types",
+                                                    )
+                                                }
+                                                IconButton(
+                                                    onClick = {
+                                                        physEnabled = false
+                                                        fireEnabled = false
+                                                        iceEnabled = false
+                                                        windEnabled = false
+                                                        thunderEnabled = false
+                                                        nukeEnabled = false
+                                                        psyEnabled = false
+                                                        lightEnabled = false
+                                                        darkEnabled = false
+                                                        almightyEnabled = false
+                                                        healEnabled = false
+                                                        buffEnabled = false
+                                                        debuffEnabled = false
+                                                        statusEnabled = false
+                                                        intelEnabled = false
+                                                        defenseEnabled = false
+                                                        miscEnabled = false
+                                                        waterEnabled = false
+                                                        earthEnabled = false
+                                                        fusionEnabled = false
+                                                        cosmicEnabled = false
+                                                        occultEnabled = false
+                                                        gunEnabled = false
+                                                        bloomEnabled = false
+                                                        weatherEnabled = false
+                                                    }) {
+                                                    Image(
+                                                        painter = painterResource(id = R.drawable.off),
+                                                        contentDescription = "Disable All Types",
+                                                    )
+                                                }
                                             }
                                         }
+                                        Divider()
+                                        Row(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.Center,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Text(text = "Show Disclaimer ")
+                                            Switch(
+                                                checked = disclaimerEnabled,
+                                                onCheckedChange = { disclaimerEnabled = it }
+                                            )
+                                        }
+                                        Text(
+                                            text = "Build: Release 1 (2023/10/28)",
+                                            modifier = Modifier.fillMaxWidth(),
+                                            textAlign = TextAlign.Center
+                                        )
                                     }
                                 },
                                 confirmButton = {
@@ -737,8 +891,9 @@ class MainActivity : ComponentActivity() {
                         }
                         Button(onClick = {
                             if (searchQuery.isNotBlank()) {
-                                namesSearched = namesSearched.toMutableList().apply{clear()}
-                                if (disclaimerEnabled) namesSearched = namesSearched + listOf(contentDisclaimer)
+                                namesSearched = namesSearched.toMutableList().apply { clear() }
+                                if (disclaimerEnabled) namesSearched =
+                                    namesSearched + listOf(contentDisclaimer)
                                 for (i in searchableList.indices) {
                                     val item = searchableList[i]
                                     var addItem = true
@@ -770,7 +925,8 @@ class MainActivity : ComponentActivity() {
                                             "Bloom" -> if (!bloomEnabled) addItem = false
                                             "Weather" -> if (!weatherEnabled) addItem = false
                                         }
-                                        if (item[1].contains("Fusion") && (!fusionEnabled)) addItem = false
+                                        if (item[1].contains("Fusion") && (!fusionEnabled)) addItem =
+                                            false
                                         if (addItem) namesSearched = namesSearched + listOf(item)
                                     }
                                 }
@@ -779,8 +935,9 @@ class MainActivity : ComponentActivity() {
                                 }
                                 searchQuery = ""
                             } else {
-                                namesSearched = namesSearched.toMutableList().apply{clear()}
-                                if (disclaimerEnabled) namesSearched = namesSearched + listOf(contentDisclaimer)
+                                namesSearched = namesSearched.toMutableList().apply { clear() }
+                                if (disclaimerEnabled) namesSearched =
+                                    namesSearched + listOf(contentDisclaimer)
                                 for (i in searchableList.indices) {
                                     val item = searchableList[i]
                                     var addItem = true
@@ -811,7 +968,8 @@ class MainActivity : ComponentActivity() {
                                             "Bloom" -> if (!bloomEnabled) addItem = false
                                             "Weather" -> if (!weatherEnabled) addItem = false
                                         }
-                                        if (item[1].contains("Fusion") && (!fusionEnabled)) addItem = false
+                                        if (item[1].contains("Fusion") && (!fusionEnabled)) addItem =
+                                            false
                                         if (addItem) namesSearched = namesSearched + listOf(item)
                                     }
                                 }
@@ -820,7 +978,10 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                         }) {
-                            Icon(imageVector = Icons.Default.Search, contentDescription = "Search Spells")
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = "Search Spells"
+                            )
                         }
                     }
                     Divider(modifier = Modifier.padding(vertical = 4.dp))
@@ -863,7 +1024,7 @@ fun ExpandableCard(
     onClickExpanded: (spellName: String) -> Unit,
 ) {
     Card {
-        Column (modifier = Modifier
+        Column(modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp)
             .clickable {
@@ -897,7 +1058,7 @@ fun ExpandableContent(
             animationSpec = tween(EXPANSION_ANIMATION_DURATION)
         ) + fadeOut(animationSpec = tween(EXPANSION_ANIMATION_DURATION))
     }
-    
+
     AnimatedVisibility(
         visible = isExpanded,
         enter = enterTransition,
