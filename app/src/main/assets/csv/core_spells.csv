@@ -347,7 +347,7 @@ Shuffle,Intel,I,"Mono, Free, Initiative, Intel (A)",1 Ally you can see,Free,Perm
 Vital Sight,Intel,I,"Mono, Free, Analysis, Intel (A)",1 target you can see,Free,Permanent,"Spend 1 counter. Reveals the target's maximum HP."
 Powerful Perception,Intel,II,"Unique, Perception, Counters, Intel (P)",Caster,Automatic,Passive,"At the start of your turns, add 2 counters to your party's Cognitive Counters pool. This cancels the effects of the Perception spell."
 Strategic Analysis,Intel,II,"Mono, Free, Analysis, Intel (A)",1 target you can see,Free,Permanent,"Spend 2 counters. Reveals up to 3 Active spells from the target's deck."
-Strategic Analysis,Intel,II,"Mono, Free, Analysis, Intel (A)",1 target you can see,Free,Permanent,"Spend 1 counters. Reveals all of the target's passive spells."
+Analyze Affinity,Intel,II,"Mono, Free, Analysis, Intel (A)",1 target you can see,Free,Permanent,"Spend 1 counters. Reveals all of the target's passive spells."
 Constant Analysis,Intel,II,"Analysis, Intel (P)",Caster,Automatic,Passive,"Whenever any target is hit by a spell or basic attack, you can immediately discover that target's elemental interaction with the attack's Type."
 Materialistic Perception,Intel,II,"Analysis, Free, Intel (P)",Caster,Free,Instant,"You can quickly recognize any item and their most common uses. You receive additional hints regarding items of interest and where to find them."
 Liar's Blessing,Intel,II,"Mono, Intel (P)",1 Analyzed target,Interrupt,Permanent,"When a target is Analyzed, you choose to spend 1 counter to relay false information instead. Roll Lvd6 against the original caster's Lvd6. In case of failure, the caster perceives the information as incorrect and is allowed to try again."
